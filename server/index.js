@@ -10,21 +10,25 @@ csv()
 .then((jsonObj)=>{
     const iplMatches = new Matches(jsonObj);
     //console.log(iplMatches)
-//     var matchesall = iplMatches.searchIplData();
-//     console.log((matchesall));
-//     var allData = JSON.stringify(matchesall);
-//     fs.writeFile('/home/shubham/Downloads/src/output/matchesPerYear.json', allData,function(err,file){
-//         if(err) throw err;
-//         console.log('saved');
-//     })
-//    var wonTeam = new Matches(jsonObj);
-//     var wonAllmatches = iplMatches.wonPerMatch();
-//     console.log(wonAllmatches);
-//     var allData1 = JSON.stringify(wonAllmatches);
-//     fs.writeFile('/home/shubham/Downloads/src/output/wonPerMatchPerteamYear.json', allData1,function(err,file){
-//         if(err) throw err;
-//         console.log('saved');
-//     })
+    var matchesall = iplMatches.searchIplData();
+    console.log((matchesall));
+    var allData = JSON.stringify(matchesall);
+    fs.writeFile('/home/shubham/Downloads/src/output/matchesPerYear.json', allData,function(err,file){
+        if(err) throw err;
+        console.log('saved');
+    })
+
+
+   var wonTeam = new Matches(jsonObj);
+    var wonAllmatches = iplMatches.wonPerMatch();
+    console.log(wonAllmatches);
+    var allData1 = JSON.stringify(wonAllmatches);
+    fs.writeFile('/home/shubham/Downloads/src/output/wonPerMatchPerteamYear.json', allData1,function(err,file){
+        if(err) throw err;
+        console.log('saved');
+    })
+
+
     var iplBolwers = iplMatches.takeId()
     //console.log(iplBolwers)
     csv()
