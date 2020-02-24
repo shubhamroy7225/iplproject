@@ -8,82 +8,74 @@ module.exports = class Matches {
       this.obj5 = {}
       //this.obj6 = {}
       
-    }
+}
   
-    searchIplData() {
+  searchIplData(){
     var arr = []
     for(let i in this.matchesData){
-        arr.push(this.matchesData[i].season)
+      arr.push(this.matchesData[i].season)
     }
     var obj = {}
     for(let i = 0; i < arr.length; i++){
-       if(obj[arr[i]]){
-       obj[arr[i]] += 1
-        }else{
-     obj[arr[i]] = 1
+      if(obj[arr[i]]){
+        obj[arr[i]] += 1
+      }else{
+        obj[arr[i]] = 1
+      }
     }
-   }
-   return obj
-    }
+    return obj
+  }
   wonPerMatch() {
-      for(let i in this.matchesData){
-        if(this.obj1[this.matchesData[i].season]){
-          continue;
-        }else{
-          this.obj1[this.matchesData[i].season]= {}
-        }
-        
+    for(let i in this.matchesData){
+      if(this.obj1[this.matchesData[i].season]){
+        continue;
+      }else{
+        this.obj1[this.matchesData[i].season]= {}
       }
-      for(let i in this.matchesData){
-        if(this.obj1[this.matchesData[i].season][this.matchesData[i].winner]){
-          this.obj1[this.matchesData[i].season][this.matchesData[i].winner] +=1
-        }else{
-          this.obj1[this.matchesData[i].season][this.matchesData[i].winner] = 1
-        }
-      }
-      return this.obj1
     }
+    for(let i in this.matchesData){
+      if(this.obj1[this.matchesData[i].season][this.matchesData[i].winner]){
+        this.obj1[this.matchesData[i].season][this.matchesData[i].winner] +=1
+      }else{
+        this.obj1[this.matchesData[i].season][this.matchesData[i].winner] = 1
+      }
+    }
+    return this.obj1
+  }
 
-    takeId(){
-      var arr1 = []
+  takeId(){
+    var arr1 = []
       for(let i in this.matchesData){
         if(this.matchesData[i].season === '2016'){
           arr1.push(this.matchesData[i].id)
         }
       }
-      return  arr1
-    }
-     searchExtraRuns(arr){
-       //console.log(arr)
-       //console.log(this.matchesData)
-      for(var i = 0; i < this.matchesData.length; i++){
-        var data1 = this.matchesData[i]
-       //console.log(this.matchesData[i])
-        if(arr.indexOf(data1.match_id) >= 0){
-          if(this.obj2.hasOwnProperty([data1.bowling_team])){
-           this.obj2[data1.bowling_team] += parseInt(data1.extra_runs)
-          }else{
-            this.obj2[data1.bowling_team] = parseInt(data1.extra_runs)
-          }
-         // console.log(this.matchesData[i].match_id)
-        }
-     }
-     return this.obj2
+    return  arr1
   }
-  
-
-
-  getMatchIdOfSpecificYear(){
-          //console.log(this.matchesData)
-          var arr1 = [],array = []
-          for(let i in this.matchesData){
-            if(this.matchesData[i].season === '2015'){
-              arr1.push(this.matchesData[i].id)
+  searchExtraRuns(arr){
+        for(var i = 0; i < this.matchesData.length; i++){
+          var data1 = this.matchesData[i]
+          if(arr.indexOf(data1.match_id) >= 0){
+            if(this.obj2.hasOwnProperty([data1.bowling_team])){
+            this.obj2[data1.bowling_team] += parseInt(data1.extra_runs)
+            }else{
+              this.obj2[data1.bowling_team] = parseInt(data1.extra_runs)
             }
           }
-          array.push(arr1[0]);
-          array.push(arr1[arr1.length - 1]);
-          return arr1
+      }
+    return this.obj2
+  }
+  
+  getMatchIdOfSpecificYear(){
+    var arr1 = [],array = []
+      for(let i in this.matchesData){
+        if(this.matchesData[i].season === '2015'){
+          arr1.push(this.matchesData[i].id)
+        }
+      }
+    array.push(arr1[0]);
+    array.push(arr1[arr1.length - 1]);
+    return arr1
   }
 
 //   top10economicalBowlers(array1){
@@ -127,33 +119,27 @@ module.exports = class Matches {
 //   //console.log(bowlerRun)
 //   }
 
-
-wonTheTossAndWonTheMatch(){
-  console.log(this.matchesData)
-  var obj4 = {}
-  for(var i in this.matchesData){
-    if(obj4.hasOwnProperty(this.matchesData[i].toss_winner)){
-      if(this.matchesData[i].toss_winner === this.matchesData[i].winner){
-        obj4[this.matchesData[i].toss_winner] +=1
-        
-      }
-    }else{
-      if(this.matchesData[i].toss_winner === this.matchesData[i].winner){
-        obj4[this.matchesData[i].toss_winner] =1
-        
+  wonTheTossAndWonTheMatch(){
+    var obj4 = {}
+    for(var i in this.matchesData){
+      if(obj4.hasOwnProperty(this.matchesData[i].toss_winner)){
+        if(this.matchesData[i].toss_winner === this.matchesData[i].winner){
+          obj4[this.matchesData[i].toss_winner] +=1
+        }
+      }else{
+        if(this.matchesData[i].toss_winner === this.matchesData[i].winner){
+          obj4[this.matchesData[i].toss_winner] =1
+        }
       }
     }
+    return obj4
   }
-  return obj4
-}
 
-
-playerOfThematch(){
-  var resobj = {}
-  //console.log(this.matchesData)
-  var year = 2008
-         for(let s = 0; s <= 9; s++){ 
-           this.obj5 = {}
+  playerOfThematch(){
+    var resobj = {}
+    var year = 2008
+      for(let s = 0; s <= 9; s++){ 
+        this.obj5 = {}
           for(let j in this.matchesData){
             if(this.matchesData[j].season == year){
               this.arrayofyear.push(this.matchesData[j].id)
@@ -171,13 +157,12 @@ playerOfThematch(){
           }
       
       }
-      var res = (Object.keys(this.obj5).reduce((a, b) => this.obj5[a] > this.obj5[b] ? a : b))
-     // console.log(this.arrayofyear)
-     const max = Math.max.apply(null, Object.values(this.obj5));
-      this.arrayofyear = []
+    var res = (Object.keys(this.obj5).reduce((a, b) => this.obj5[a] > this.obj5[b] ? a : b))
+    const max = Math.max.apply(null, Object.values(this.obj5));
+    this.arrayofyear = []
       resobj[year] = {}
       resobj[year][res] = max
-      //console.log(resobj)
+      
       year += 1
     }
       return resobj
@@ -187,7 +172,6 @@ playerOfThematch(){
 
 
 // takeid1(){
-//   //console.log(this.matchesData)
 //   var year = 2008
 //   var arr6 = []
 //     for(let s = 0; s <= 9; s++){
@@ -206,9 +190,7 @@ playerOfThematch(){
 // strikeRate(array){
 // for(let s = 0; s <= 9; s++){ 
 // var yeararr = array[s]
-// //console.log(yeararr)
 // var year = 2008
-// //console.log(this.matchesData)
 //   for(var i in this.matchesData){ 
 //               if(yeararr.indexOf(this.matchesData[i].match_id) != -1){
 //                 if(this.matchesData[i].batsman === 'V Kohli'){
@@ -224,10 +206,9 @@ playerOfThematch(){
 //               }
 //               }
 //           }
-//           //console.log(this.obj6)
+//
 //           //this.obj6[this.matchesData[i].batsman]= {}
 //     }
-//     console.log(this.obj6)
 //     this.obj6 = {}
 //     year +=1
     
@@ -235,7 +216,6 @@ playerOfThematch(){
 // }
 // for(var k in  this.obj6){
 //   var strike = ((this.obj6[k].Total_runs)/(this.obj6[k].Total_balls)*100)
-//   //console.log(strike)
 //   }    
 // }
 
