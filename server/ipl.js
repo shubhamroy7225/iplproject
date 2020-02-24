@@ -6,6 +6,7 @@ module.exports = class Matches {
       this.obj3 = {}
       this.arrayofyear = []
       this.obj5 = {}
+      //this.obj6 = {}
       
     }
   
@@ -85,46 +86,46 @@ module.exports = class Matches {
           return arr1
   }
 
-  top10economicalBowlers(array1){
-    var bowlerRun = {}
-      for(let i in this.matchesData){   
-      if (array1.indexOf(this.matchesData[i].match_id != -1)){
-          if (bowlerRun.hasOwnProperty(this.matchesData[i].bowler)) {
-              bowlerRun[this.matchesData[i].bowler]['total_runs'] += parseInt(this.matchesData[i].batsman_runs)
-              +parseInt(this.matchesData[i].noball_runs)+parseInt(this.matchesData[i].wide_runs);
-              if (this.matchesData[i].noball_runs == "0" && this.matchesData[i].wide_runs == "0") {
-                  bowlerRun[this.matchesData[i].bowler]['total_balls'] +=1;
-              }
-           }else{
-            bowlerRun[this.matchesData[i].bowler] = {}
-            bowlerRun[this.matchesData[i].bowler]['total_runs'] = parseInt(this.matchesData[i].batsman_runs)
-              +parseInt(this.matchesData[i].noball_runs)+parseInt(this.matchesData[i].wide_runs);
-              if (this.matchesData[i].noball_runs == "0" && this.matchesData[i].wide_runs == "0") {
-                  bowlerRun[this.matchesData[i].bowler]['total_balls'] =1;
-              }else{
-                bowlerRun[this.matchesData[i].bowler]['total_balls'] =0;
-            }
-           }
-      }
-  }
-  let arr5 = [];
-      for (let k in bowlerRun) {
-        // (bowlerRun[k]['total_runs']/bowlerRun[k]['total_balls'])
-            let economicRate = (((bowlerRun[k]['total_runs'])/(bowlerRun[k]['total_balls']))*6);
-            let obj = {
-                 y: economicRate,
-                 bowler: k
-              }
-               arr5.push(obj);
-            }
-          //console.log(economicRate)
+//   top10economicalBowlers(array1){
+//     var bowlerRun = {}
+//       for(let i in this.matchesData){   
+//       if (array1.indexOf(this.matchesData[i].match_id != -1)){
+//           if (bowlerRun.hasOwnProperty(this.matchesData[i].bowler)) {
+//               bowlerRun[this.matchesData[i].bowler]['total_runs'] += parseInt(this.matchesData[i].batsman_runs)
+//               +parseInt(this.matchesData[i].noball_runs)+parseInt(this.matchesData[i].wide_runs);
+//               if (this.matchesData[i].noball_runs == "0" && this.matchesData[i].wide_runs == "0") {
+//                   bowlerRun[this.matchesData[i].bowler]['total_balls'] +=1;
+//               }
+//            }else{
+//             bowlerRun[this.matchesData[i].bowler] = {}
+//             bowlerRun[this.matchesData[i].bowler]['total_runs'] = parseInt(this.matchesData[i].batsman_runs)
+//               +parseInt(this.matchesData[i].noball_runs)+parseInt(this.matchesData[i].wide_runs);
+//               if (this.matchesData[i].noball_runs == "0" && this.matchesData[i].wide_runs == "0") {
+//                   bowlerRun[this.matchesData[i].bowler]['total_balls'] =1;
+//               }else{
+//                 bowlerRun[this.matchesData[i].bowler]['total_balls'] =0;
+//             }
+//            }
+//       }
+//   }
+//   let arr5 = [];
+//       for (let k in bowlerRun) {
+//         // (bowlerRun[k]['total_runs']/bowlerRun[k]['total_balls'])
+//             let economicRate = (((bowlerRun[k]['total_runs'])/(bowlerRun[k]['total_balls']))*6);
+//             let obj = {
+//                  y: economicRate,
+//                  bowler: k
+//               }
+//                arr5.push(obj);
+//             }
+//           //console.log(economicRate)
     
-   arr5.sort(function (a, b) {
-      return a.y - b.y;
- })
-  console.log(arr5)
-  //console.log(bowlerRun)
-  }
+//    arr5.sort(function (a, b) {
+//       return a.y - b.y;
+//  })
+//   console.log(arr5)
+//   //console.log(bowlerRun)
+//   }
 
 
 wonTheTossAndWonTheMatch(){
@@ -147,10 +148,10 @@ wonTheTossAndWonTheMatch(){
 }
 
 
-playerOfTheatch(){
-  
+playerOfThematch(){
+  var resobj = {}
   //console.log(this.matchesData)
-  var year = '2008'
+  var year = 2008
          for(let s = 0; s <= 9; s++){ 
            this.obj5 = {}
           for(let j in this.matchesData){
@@ -168,12 +169,74 @@ playerOfTheatch(){
             }
             t++
           }
-        
-      }
-      //console.log(Object.keys(this.obj5).reduce((a, b) => this.obj5[a] > this.obj5[b] ? a : b))
-      console.log(this.obj5)
-      year++
-    }
       
+      }
+      var res = (Object.keys(this.obj5).reduce((a, b) => this.obj5[a] > this.obj5[b] ? a : b))
+     // console.log(this.arrayofyear)
+     const max = Math.max.apply(null, Object.values(this.obj5));
+      this.arrayofyear = []
+      resobj[year] = {}
+      resobj[year][res] = max
+      //console.log(resobj)
+      year += 1
     }
+      return resobj
+    }
+
+
+
+
+// takeid1(){
+//   //console.log(this.matchesData)
+//   var year = 2008
+//   var arr6 = []
+//     for(let s = 0; s <= 9; s++){
+//      var arr = []
+//           for(let j in this.matchesData){
+//             if(this.matchesData[j].season == year){
+//               arr.push(this.matchesData[j].id)
+//             }
+//           }
+//       arr6.push(arr)
+//       year += 1
+//     }
+//   return arr6
+//   }
+
+// strikeRate(array){
+// for(let s = 0; s <= 9; s++){ 
+// var yeararr = array[s]
+// //console.log(yeararr)
+// var year = 2008
+// //console.log(this.matchesData)
+//   for(var i in this.matchesData){ 
+//               if(yeararr.indexOf(this.matchesData[i].match_id) != -1){
+//                 if(this.matchesData[i].batsman === 'V Kohli'){
+//                 if(this.obj6[this.matchesData[i].batsman]){
+//                 this.obj6[this.matchesData[i].batsman]['Total_runs'] += parseInt(this.matchesData[i].batsman_runs)
+//                 this.obj6[this.matchesData[i].batsman]['Total_balls'] += parseInt(this.matchesData[i].ball)
+//                 }else{  
+//                 this.obj6[this.matchesData[i].batsman]= {}   
+//                 if(this.matchesData[i].batsman){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+//                 this.obj6[this.matchesData[i].batsman]['Total_runs'] = parseInt(this.matchesData[i].batsman_runs)
+//                 this.obj6[this.matchesData[i].batsman]['Total_balls'] = parseInt(this.matchesData[i].ball)
+//                 }
+//               }
+//               }
+//           }
+//           //console.log(this.obj6)
+//           //this.obj6[this.matchesData[i].batsman]= {}
+//     }
+//     console.log(this.obj6)
+//     this.obj6 = {}
+//     year +=1
+    
+    
+// }
+// for(var k in  this.obj6){
+//   var strike = ((this.obj6[k].Total_runs)/(this.obj6[k].Total_balls)*100)
+//   //console.log(strike)
+//   }    
+// }
+
 };

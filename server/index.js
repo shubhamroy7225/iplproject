@@ -9,7 +9,8 @@ csv()
 .fromFile(csvFilePath)
 .then((jsonObj)=>{
     const iplMatches = new Matches(jsonObj);
-    console.log(iplMatches)
+    // console.log(iplMatches)
+
     var matchesall = iplMatches.searchIplData();
     console.log((matchesall));
     var allData = JSON.stringify(matchesall);
@@ -29,14 +30,16 @@ csv()
     })
 
 
+
+
 var iplBolwers = iplMatches.takeId()
  var bowlerseco = iplMatches.getMatchIdOfSpecificYear();
- console.log(bowlerseco) 
+ //console.log(bowlerseco) 
     csv()
     .fromFile(csvFilePath2)
     .then((jsonObj)=>{
         const iplMatches1 = new Matches(jsonObj);
-
+        //console.log(iplMatches)
 
         var matchesall = iplMatches1.searchExtraRuns(iplBolwers)
         var allData2 = JSON.stringify(matchesall);
@@ -46,9 +49,9 @@ var iplBolwers = iplMatches.takeId()
        }) 
 
 
-        var bowlerseconomic = iplMatches1.top10economicalBowlers(bowlerseco);
-        console.log(bowlerseconomic);
-   })
+//         var bowlerseconomic = iplMatches1.top10economicalBowlers(bowlerseco);
+//         console.log(bowlerseconomic);
+//    })
 
 
 
@@ -61,10 +64,22 @@ fs.writeFile('/home/shubham/Downloads/src/output/ wonTosswonMatch.json', allData
  }) 
 
 
-var playrData = iplMatches.playerOfTheatch()
-console.log(playrData)
+var playrData = iplMatches.playerOfThematch()
+//console.log(playrData)
+var allData6 = JSON.stringify(playrData);
+fs.writeFile('/home/shubham/Downloads/src/output/ playerOfTheMatch.json', allData6,function(err,file){
+            if(err) throw err;
+            console.log('saved');
+ }) 
+
+
+// var allid = iplMatches.takeid1()
+// //console.log(allid)
+// var viratStrikeRate = iplMatches1.strikeRate(allid)
+
+          
+})
 
 
 
 })
-
