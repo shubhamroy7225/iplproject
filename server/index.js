@@ -19,7 +19,6 @@ csv()
     })
 
 //  2. Number of matches won of per team per year in IPL.
-    var wonTeam = new Matches(jsonObj);
     var wonAllmatches = iplMatches.wonPerMatch();
     var allData1 = JSON.stringify(wonAllmatches);
     fs.writeFile('../output/wonPerMatchPerteamYear.json', allData1,function(err,file){
