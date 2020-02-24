@@ -9,7 +9,8 @@ module.exports = class Matches {
       //this.obj6 = {}
       
 }
-  
+
+//  1. Number of matches played per year for all the years in IPL. 
   searchIplData(){
     var arr = []
     for(let i in this.matchesData){
@@ -25,6 +26,8 @@ module.exports = class Matches {
     }
     return obj
   }
+
+//  2. Number of matches won of per team per year in IPL.
   wonPerMatch() {
     for(let i in this.matchesData){
       if(this.obj1[this.matchesData[i].season]){
@@ -43,6 +46,7 @@ module.exports = class Matches {
     return this.obj1
   }
 
+// 3. Extra runs conceded per team in 2016
   takeId(){
     var arr1 = []
       for(let i in this.matchesData){
@@ -119,6 +123,8 @@ module.exports = class Matches {
 //   //console.log(bowlerRun)
 //   }
 
+
+// 5.Find the number of times each team won the toss and also won the match
   wonTheTossAndWonTheMatch(){
     var obj4 = {}
     for(var i in this.matchesData){
@@ -135,6 +141,7 @@ module.exports = class Matches {
     return obj4
   }
 
+//  6.Find player per season who has won the highest number of Player of the Match awards
   playerOfThematch(){
     var resobj = {}
     var year = 2008
