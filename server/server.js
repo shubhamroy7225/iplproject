@@ -18,7 +18,7 @@ else if(req.url == '/matchesPerYear'){
         if(err){
             console.error('file  does not exist')
         }else{
-            res.writeHead(200, { 'Content-Type': 'text/html' }); 
+            res.writeHead(200, { 'Content-Type': 'application/json' }); 
       
             res.write(data);
             res.end();
@@ -30,7 +30,7 @@ else if(req.url == '/wonPerMatchPerteamYear'){
         if(err){
             console.error('file  does not exist')
         }else{
-            res.writeHead(200, { 'Content-Type': 'text/html' }); 
+            res.writeHead(200, { 'Content-Type': 'application/json' }); 
       
             res.write(data);
             res.end();
@@ -42,7 +42,7 @@ else if(req.url == '/extraRuns'){
         if(err){
             console.error('file  does not exist')
         }else{
-            res.writeHead(200, { 'Content-Type': 'text/html' }); 
+            res.writeHead(200, { 'Content-Type': 'application/json' }); 
       
             res.write(data);
             res.end();
@@ -54,7 +54,7 @@ else if(req.url == '/top10EconomyBowler'){
         if(err){
             console.error('file  does not exist')
         }else{
-            res.writeHead(200, { 'Content-Type': 'text/html' }); 
+            res.writeHead(200, { 'Content-Type': 'application/json' }); 
       
             res.write(data);
             res.end();
@@ -66,7 +66,7 @@ else if(req.url == '/wonTosswonMatch'){
         if(err){
             console.error('file  does not exist')
         }else{
-            res.writeHead(200, { 'Content-Type': 'text/html' }); 
+            res.writeHead(200, { 'Content-Type': 'application/json' }); 
       
             res.write(data);
             res.end();
@@ -78,7 +78,7 @@ else if(req.url == '/playerOfTheMatch'){
         if(err){
             console.error('file  does not exist')
         }else{
-            res.writeHead(200, { 'Content-Type': 'text/html' }); 
+            res.writeHead(200, { 'Content-Type': 'application/json' }); 
       
             res.write(data);
             res.end();
@@ -90,7 +90,7 @@ else if(req.url == '/viratKohliStrikeRate'){
         if(err){
             console.error('file  does not exist')
         }else{
-            res.writeHead(200, { 'Content-Type': 'text/html' }); 
+            res.writeHead(200, { 'Content-Type': 'application/json' }); 
       
             res.write(data);
             res.end();
@@ -102,7 +102,7 @@ else if(req.url == '/playerDismissedbyBowler'){
         if(err){
             console.error('file  does not exist')
         }else{
-            res.writeHead(200, { 'Content-Type': 'text/html' }); 
+            res.writeHead(200, { 'Content-Type': 'application/json' }); 
       
             res.write(data);
             res.end();
@@ -114,7 +114,7 @@ else if(req.url == '/playerDismissedbyBowler'){
         if(err){
             console.error('file  does not exist')
         }else{
-            res.writeHead(200, { 'Content-Type': 'text/html' }); 
+            res.writeHead(200, { 'Content-Type': 'application/json' }); 
       
             res.write(data);
             res.end();
@@ -126,7 +126,7 @@ else if(req.url == '/bestEconomyBowler'){
         if(err){
             console.error('file  does not exist')
         }else{
-            res.writeHead(200, { 'Content-Type': 'text/html' }); 
+            res.writeHead(200, { 'Content-Type': 'application/json' }); 
       
             res.write(data);
             res.end();
@@ -134,7 +134,7 @@ else if(req.url == '/bestEconomyBowler'){
     })
 }
 else{
-    res.writeHead(200, { 'Content-Type': 'text/html' }); 
+    res.writeHead(200, { 'Content-Type': 'text' }); 
     res.write('route does not exist');
     res.end();
 }
