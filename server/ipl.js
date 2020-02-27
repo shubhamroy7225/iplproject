@@ -70,60 +70,59 @@ module.exports = class Matches {
     return this.obj2
   }
 
+  // 4. Top 10 economical bowlers in 2015
+  getMatchIdOfSpecificYear() {
+    var arr = [], year = '2015'
+    this.matchesData.filter(function (data) {
+      if (data.season == year) {
+        arr.push(data.id)
+      }
+    })
+    return arr
+  }
 
-  // 4.Top 10 economical bowlers in 2015
-  //   getMatchIdOfSpecificYear(){
-  //     var arr1 = [],array = []
-  //       for(let i in this.matchesData){
-  //         if(this.matchesData[i].season === '2015'){
-  //           arr1.push(this.matchesData[i].id)
-  //         }
-  //       }
-  //     //array.push(arr1[0]);
-  //     //array.push(arr1[arr1.length - 1]);
-  //     return arr1
-  //     }
+  top10economicalBowlers(array) {
+    var bowlereconomy = {}
+    var start1 = array[0], end1 = array[array.length - 1]
+    this.matchesData.map(function (data3) {
+      if (data3.match_id >= parseInt(start1) && data3.match_id <= parseInt(end1)) {
+        if (bowlereconomy.hasOwnProperty(data3.bowler)) {
+          bowlereconomy[data3.bowler]['total_runs'] += parseInt(data3.batsman_runs)
+            + parseInt(data3.noball_runs) + parseInt(data3.wide_runs)
+          if (parseInt(data3.noball_runs) == 0 && parseInt(data3.wide_runs) == 0) {
+            bowlereconomy[data3.bowler]['total_balls'] += 1
+          }
+        } else {
+          bowlereconomy[data3.bowler] = {}
+          bowlereconomy[data3.bowler]['total_runs'] = parseInt(data3.batsman_runs)
+            + parseInt(data3.noball_runs) + parseInt(data3.wide_runs)
+          if (parseInt(data3.noball_runs) == 0 && parseInt(data3.wide_runs) == 0) {
+            bowlereconomy[data3.bowler]['total_balls'] = 1
+          } else {
+            bowlereconomy[data3.bowler]['total_balls'] = 0
+          }
+        }
+      }
+    })
+    let arr5 = [];
+    for (let k in bowlereconomy) {
+      let economicRate = (((bowlereconomy[k]['total_runs']) / (bowlereconomy[k]['total_balls']) / 6));
+      let obj = {
+        y: economicRate,
+        bowler: k
+      }
+      arr5.push(obj);
+    }
+    arr5.sort(function (a, b) {
+      return a.y - b.y;
+    })
+    var resobj4 = []
+    for(var i = 0; i  < 10; i++){
+      resobj4.push(arr5[i])
+    }
+    return resobj4
+  }
 
-  //   top10economicalBowlers(array1){
-  //     var bowlerRun = {}
-  //       for(let i in this.matchesData){   
-  //       if (array1.indexOf(this.matchesData[i].match_id != -1)){
-  //           if (bowlerRun.hasOwnProperty(this.matchesData[i].bowler)) {
-  //               bowlerRun[this.matchesData[i].bowler]['total_runs'] += parseInt(this.matchesData[i].batsman_runs)
-  //               +parseInt(this.matchesData[i].noball_runs)+parseInt(this.matchesData[i].wide_runs);
-  //               if (this.matchesData[i].noball_runs == "0" && this.matchesData[i].wide_runs == "0") {
-  //                   bowlerRun[this.matchesData[i].bowler]['total_balls'] += parseInt(this.matchesData[i].ball);
-  //               }
-  //            }else{
-  //             bowlerRun[this.matchesData[i].bowler] = {}
-  //             bowlerRun[this.matchesData[i].bowler]['total_runs'] = parseInt(this.matchesData[i].batsman_runs)
-  //               +parseInt(this.matchesData[i].noball_runs)+parseInt(this.matchesData[i].wide_runs);
-  //               if (this.matchesData[i].noball_runs == "0" && this.matchesData[i].wide_runs == "0") {
-  //                   bowlerRun[this.matchesData[i].bowler]['total_balls'] = parseInt(this.matchesData[i].ball);
-  //               }else{
-  //                 bowlerRun[this.matchesData[i].bowler]['total_balls'] =parseInt(this.matchesData[i].ball);
-  //             }
-  //            }
-  //       }
-  //   }
-  //   let arr5 = [];
-  //       for (let k in bowlerRun) {
-  //         // (bowlerRun[k]['total_runs']/bowlerRun[k]['total_balls'])
-  //             let economicRate = (((bowlerRun[k]['total_runs'])/(bowlerRun[k]['total_balls']))*6);
-  //             let obj = {
-  //                  y: economicRate,
-  //                  bowler: k
-  //               }
-  //                arr5.push(obj);
-  //             }
-  //           //console.log(economicRate)
-
-  //    arr5.sort(function (a, b) {
-  //       return a.y - b.y;
-  //  })
-  //   console.log(arr5)
-  //   //console.log(bowlerRun)
-  //   }
 
 
   // 5.Find the number of times each team won the toss and also won the match
@@ -286,7 +285,16 @@ module.exports = class Matches {
     for (var i in superovereconomy) {
       rseobj2[i] = (superovereconomy[i]['total_runs'] / (superovereconomy[i]['total_balls'] / 6))
     }
-    
+    var max1 = Infinity, val = 0, resobj2 = {}, pos = ''
+    for (var i in rseobj2) {
+      val = rseobj2[i]
+      if (val < max1) {
+        max1 = val
+        pos = i
+      }
+    }
+    resobj2[pos] = max1
+    return resobj2
   }
 
 };

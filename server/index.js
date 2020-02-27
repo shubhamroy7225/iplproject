@@ -1,14 +1,14 @@
 
 var fs = require('fs')
-const csv=require('csvtojson');
-const Matches = require('./ipl.js');
-const csvFilePath='../data/matches.csv';
-const csvFilePath2='../data/deliveries.csv';
+const csv=require('csvtojson')
+const Matches = require('./ipl.js')
+const csvFilePath='../data/matches.csv'
+const csvFilePath2='../data/deliveries.csv'
 
 csv()
 .fromFile(csvFilePath)
 .then((jsonObj)=>{
-    const iplMatches = new Matches(jsonObj);
+    const iplMatches = new Matches(jsonObj)
     
 //  1. Number of matches played per year for all the years in IPL.
     var matchesall = iplMatches.searchIplData();
@@ -45,16 +45,20 @@ csv()
     }) 
 
 //  4. Top 10 economical bowlers in 2015
-    // var bowlerseco = iplMatches.getMatchIdOfSpecificYear();
-    // console.log(bowlerseco)
-    // var bowlerseconomic = iplMatches1.top10economicalBowlers(bowlerseco);
-//    })
+    var bowlerseco = iplMatches.getMatchIdOfSpecificYear();
+    var bowlerseconomic = iplMatches1.top10economicalBowlers(bowlerseco);
+    var allData3 = JSON.stringify(bowlerseconomic);
+        fs.writeFile('../output/top10EconomyBowler.json', allData3,function(err,file){
+        if(err) throw err;
+        console.log('saved');
+    }) 
+
 
 
 //  5.Find the number of times each team won the toss and also won the match
     var wonToss = iplMatches.wonTheTossAndWonTheMatch();
     var allData4 = JSON.stringify(wonToss);
-    fs.writeFile('../output/ wonTosswonMatch.json', allData4,function(err,file){
+    fs.writeFile('../output/wonTosswonMatch.json', allData4,function(err,file){
             if(err) throw err;
             console.log('saved');
     }) 
@@ -62,7 +66,7 @@ csv()
 //  6.Find player per season who has won the highest number of Player of the Match awards
     var playrData = iplMatches.playerOfThematch();
     var allData6 = JSON.stringify(playrData);
-    fs.writeFile('../output/ playerOfTheMatch.json', allData6,function(err,file){
+    fs.writeFile('../output/playerOfTheMatch.json', allData6,function(err,file){
             if(err) throw err;
             console.log('saved');
     }) 
@@ -87,6 +91,11 @@ csv()
 
 //  9.Find the bowler with the best economy in super overs
     var superover = iplMatches1.bestEconomyBowler()
+    var allData9 = JSON.stringify(superover);
+    fs.writeFile('../output/bestEconomyBowler.json', allData9,function(err,file){
+        if(err) throw err;
+        console.log('saved');
+    }) 
 
 })
 
