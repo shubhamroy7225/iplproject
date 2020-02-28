@@ -24,7 +24,14 @@ module.exports = class Matches {
         obj[arr[i]] = 1
       }
     }
-    return obj
+    var arr1 = [],resArray = []
+    for(let i in obj){
+      arr1.push(i)
+      arr1.push(obj[i])
+      resArray.push(arr1)
+      arr1 = []
+    }
+    return resArray
   }
 
   //  2. Number of matches won of per team per year in IPL.
@@ -67,7 +74,14 @@ module.exports = class Matches {
         }
       }
     }
-    return this.obj2
+    var arr1 = [],resArray = []
+    for(let i in this.obj2){
+      arr1.push(i)
+      arr1.push(this.obj2[i])
+      resArray.push(arr1)
+      arr1 = []
+    }
+    return resArray
   }
 
   // 4. Top 10 economical bowlers in 2015
@@ -108,8 +122,8 @@ module.exports = class Matches {
     for (let k in bowlereconomy) {
       let economicRate = (((bowlereconomy[k]['total_runs']) / (bowlereconomy[k]['total_balls']) / 6));
       let obj = {
-        y: economicRate,
-        bowler: k
+        bowler: k,
+        y: economicRate
       }
       arr5.push(obj);
     }
@@ -120,7 +134,16 @@ module.exports = class Matches {
     for(var i = 0; i  < 10; i++){
       resobj4.push(arr5[i])
     }
-    return resobj4
+    //return resobj4
+    var arr1 = [],resArray = []
+    for(let i = 0; i < resobj4.length; i++){
+      for(let j in resobj4[i]){
+      arr1.push(resobj4[i][j])
+    }
+      resArray.push(arr1)
+      arr1 = []
+  }
+    return resArray
   }
 
 
@@ -139,7 +162,14 @@ module.exports = class Matches {
         }
       }
     }
-    return obj4
+    var arr1 = [],resArray = []
+    for(let i in obj4){
+      arr1.push(i)
+      arr1.push(obj4[i])
+      resArray.push(arr1)
+      arr1 = []
+    }
+    return resArray
   }
 
   //6.Find player per season who has won the highest number of Player of the Match awards
@@ -218,12 +248,19 @@ module.exports = class Matches {
           }
         }
       })
-      var res = (((totalRuns['V Kohli']['total_runs'] / totalRuns['V Kohli']['total_balls']) * 100).toFixed(2))
+      var res = parseFloat(((totalRuns['V Kohli']['total_runs'] / totalRuns['V Kohli']['total_balls']) * 100).toFixed(2))
       resObj[year] = res
       year++
       totalRuns = {}
     }
-    return resObj
+    var arr1 = [],resArray = []
+    for(let i in resObj){
+      arr1.push(i)
+      arr1.push(resObj[i])
+      resArray.push(arr1)
+      arr1 = []
+    }
+    return resArray
   }
 
   // 8.Find the highest number of times one player has been dismissed by another player   
@@ -255,7 +292,12 @@ module.exports = class Matches {
         }
       }
     }
-    return { 'batsman': posi, 'bowler': posj, 'num': max }
+    var a = [], array = []
+    a.push(posj)
+    a.push(max)
+    array.push(a)
+    return array
+    //return { 'batsman': posi, 'bowler': posj, 'num': max }
   }
 
   //  9.Find the bowler with the best economy in super overs
@@ -294,7 +336,14 @@ module.exports = class Matches {
       }
     }
     resobj2[pos] = max1
-    return resobj2
+    var arr1 = [],resArray = []
+    for(let i in resobj2){
+      arr1.push(i)
+      arr1.push(resobj2[i])
+      resArray.push(arr1)
+      arr1 = []
+    }
+    return resArray
   }
 
 };

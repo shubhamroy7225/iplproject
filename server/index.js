@@ -1,4 +1,4 @@
-
+console.time()
 var fs = require('fs')
 const csv=require('csvtojson')
 const Matches = require('./ipl.js')
@@ -96,7 +96,8 @@ csv()
         if(err) throw err;
         console.log('saved');
     }) 
-
+console.timeEnd()
 })
+
 
 })

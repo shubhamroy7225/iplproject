@@ -13,6 +13,105 @@ if (req.url == '/'){
             }
         })
     }
+else if (req.url == '/perMatchPerYear1'){ 
+        fs.readFile('../Htmlfiles/perMatchPerYear1.html','utf-8',(err ,data)=>{
+            if(err){
+                console.error('file  does not exist')
+            }else{
+                res.writeHead(200, { 'Content-Type': 'text/html' }); 
+          
+            res.write(data);
+            res.end();
+        }
+    })
+}
+
+else if (req.url == '/viratKohliStrike'){ 
+    fs.readFile('../Htmlfiles/viratKohliStrike.html','utf-8',(err ,data)=>{
+        if(err){
+            console.error('file  does not exist')
+        }else{
+            res.writeHead(200, { 'Content-Type': 'text/html' }); 
+      
+        res.write(data);
+        res.end();
+    }
+})
+}
+
+
+else if (req.url == '/wonTossWonTeam'){ 
+    fs.readFile('../Htmlfiles/wonTossWonTeam.html','utf-8',(err ,data)=>{
+        if(err){
+            console.error('file  does not exist')
+        }else{
+            res.writeHead(200, { 'Content-Type': 'text/html' }); 
+            res.write(data);
+            res.end();
+        }
+    })
+}
+
+else if (req.url == '/bestEconomy'){ 
+        fs.readFile('../Htmlfiles/bestEconomy.html','utf-8',(err ,data)=>{
+                if(err){
+                    console.error('file  does not exist')
+                }else{
+                    res.writeHead(200, { 'Content-Type': 'text/html' }); 
+              
+                    res.write(data);
+                    res.end();
+                }
+        })
+}
+
+
+else if (req.url == '/teamExtraRuns'){ 
+        fs.readFile('../Htmlfiles/teamExtraRuns.html','utf-8',(err ,data)=>{
+            if(err){
+                console.error('file  does not exist')
+            }else{
+                res.writeHead(200, { 'Content-Type': 'text/html' }); 
+                res.write(data);
+                res.end();
+            }
+    })
+}
+    
+else if (req.url == '/playerDismissed'){ 
+        fs.readFile('../Htmlfiles/playerDismissed.html','utf-8',(err ,data)=>{
+            if(err){
+                console.error('file  does not exist')
+            }else{
+                res.writeHead(200, { 'Content-Type': 'text/html' }); 
+                res.write(data);
+                res.end();
+                }
+        })
+}
+else if (req.url == '/top10bowlerEconomy'){ 
+        fs.readFile('../Htmlfiles/top10bowlerEconomy.html','utf-8',(err ,data)=>{
+                if(err){
+                    console.error('file  does not exist')
+                }else{
+                    res.writeHead(200, { 'Content-Type': 'text/html' }); 
+                    res.write(data);
+                    res.end();
+                }
+        })
+    }
+
+else if (req.url == '/playerOfTheMatch1'){ 
+            fs.readFile('../Htmlfiles/playerOfTheMatch1.html','utf-8',(err ,data)=>{
+                if(err){
+                    console.error('file  does not exist')
+                }else{
+                    res.writeHead(200, { 'Content-Type': 'text/html' }); 
+                    res.write(data);
+                    res.end();
+            }
+    })
+}
 else if(req.url == '/matchesPerYear'){ 
     fs.readFile('../output/matchesPerYear.json','utf-8',(err ,data)=>{
         if(err){
@@ -25,6 +124,7 @@ else if(req.url == '/matchesPerYear'){
         }
     })
 }
+
 else if(req.url == '/wonPerMatchPerteamYear'){ 
     fs.readFile('../output/wonPerMatchPerteamYear.json','utf-8',(err ,data)=>{
         if(err){
@@ -109,21 +209,9 @@ else if(req.url == '/playerDismissedbyBowler'){
         }
     })
 }
-else if(req.url == '/playerDismissedbyBowler'){ 
-    fs.readFile('../output/playerDismissedbyBowler.json','utf-8',(err ,data)=>{
-        if(err){
-            console.error('file  does not exist')
-        }else{
-            res.writeHead(200, { 'Content-Type': 'application/json' }); 
-      
-            res.write(data);
-            res.end();
-        }
-    })
-}
 else if(req.url == '/bestEconomyBowler'){ 
     fs.readFile('../output/bestEconomyBowler.json','utf-8',(err ,data)=>{
-        if(err){
+        if(err){i
             console.error('file  does not exist')
         }else{
             res.writeHead(200, { 'Content-Type': 'application/json' }); 
@@ -139,6 +227,6 @@ else{
     res.end();
 }
 })
-.listen(3000, ()=>{
+.listen(2000, ()=>{
     console.log("server started")
 })
