@@ -1,83 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title></title>
-    <link rel="stylesheet" href="cssfile.css">
+    <link rel="stylesheet" href="cssfile.css" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <figure class="highcharts-figure">
-        <div id="container"></div>
+      <div id="container"></div>
     </figure>
-<script>
-
-var xhttp;
-xhttp = new XMLHttpRequest();
-xhttp.open("GET", '/top10EconomyBowler', true);
-xhttp.send();
-xhttp.onreadystatechange = function() {
-if (this.readyState == 4 && this.status == 200) {
-var data1 = this.responseText;
-Highcharts.chart('container', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'Top 10 economical bowlers in 2015'
-    },
-    subtitle: {
-        text: 'kaggle.com'
-    },
-    xAxis: {
-        type: 'category',
-        labels: {
-            rotation: -45,
-            style: {
-                fontSize: '13px',
-                fontFamily: 'Verdana, sans-serif'
-            }
+    <script>
+      var xhttp = new XMLHttpRequest()
+      xhttp.open("GET", "/top10EconomyBowler", true)
+      xhttp.send()
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var data1 = this.responseText;
+          Highcharts.chart("container", {
+            chart: {
+              type: "column"
+            },
+            title: {
+              text: "Top 10 economical bowlers in 2015"
+            },
+            subtitle: {
+              text: "kaggle.com"
+            },
+            xAxis: {
+              type: "category",
+              labels: {
+                rotation: -45,
+                style: {
+                  fontSize: "13px",
+                  fontFamily: "Verdana, sans-serif"
+                }
+              }
+            },
+            yAxis: {
+              min: 0,
+              title: {
+                text: "Economy"
+              }
+            },
+            legend: {
+              enabled: false
+            },
+            tooltip: {
+              pointFormat: "Economy"
+            },
+            series: [
+              {
+                name: "Economy",
+                data: JSON.parse(xhttp.response),
+                dataLabels: {
+                  enabled: true,
+                  rotation: -90,
+                  color: "red",
+                  align: "right",
+                  format: "{point.y:.6f}",
+                  y: 10,
+                  style: {
+                    fontSize: "13px",
+                    fontFamily: "Verdana, sans-serif"
+                  }
+                }
+              }
+            ]
+          });
         }
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'Economy'
-        }
-    },
-    legend: {
-        enabled: false
-    },
-    tooltip: {
-        pointFormat: 'Economy'
-    },
-    series: [{
-        name: 'Values',
-        data: JSON.parse(xhttp.response),
-        dataLabels: {
-            enabled: true,
-            rotation: -90,
-            color: 'red',
-            align: 'right',
-            format: '{point.y:.6f}',
-            y: 10,
-            style: {
-                fontSize: '13px',
-                fontFamily: 'Verdana, sans-serif'
-            }
-        }
-    }]
-});
-}
-}
-
-
-</script>
-</body>
+      };
+    </script>
+  </body>
 </html>

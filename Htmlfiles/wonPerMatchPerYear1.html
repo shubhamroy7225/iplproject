@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  </head>
+  <body>
+    <figure class="highcharts-figure">
+      <div id="container"></div>
+    </figure>
+    <script>
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("GET", "/wonPerMatchPerteamYear", true);
+      xhttp.send();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var data1 = JSON.parse(this.responseText);
+          // here i have to make a login to formated data
+          var a = [],
+            arr = [],
+            arrofKeys = [];
+          var set1 = new Set();
+          for (let i in data1) {
+            arrofKeys.push(i);
+            for (let j in data1[i]) {
+              if (!set1.has(j) && j != "") {
+                set1.add(j);
+                arr.push(j);
+              }
+            }
+          }
+          var arr1 = [],
+            obj = {},
+            array = [];
+          for (let k = 0; k < arr.length; k++) {
+            for (let l in data1) {
+              for (let h in data1[l]) {
+                last = Object.keys(data1[l])[Object.keys(data1[l]).length - 1];
+                if (arr[k] === h) {
+                  arr1.push(data1[l][h]);
+                  break;
+                }
+                if (arr[k] != h && h == last) {
+                  arr1.push(0);
+                }
+              }
+            }
+            obj["name"] = arr[k];
+            obj["data"] = arr1;
+            array.push(obj);
+            obj = {};
+            arr1 = [];
+          }
+          Highcharts.chart("container", {
+            chart: {
+              type: "column"
+            },
+            title: {
+              text: "Number of matches won of per team per year in IPL."
+            },
+            subtitle: {
+              text: "Kaggle.com"
+            },
+            xAxis: {
+              categories: arrofKeys,
+              crosshair: true
+            },
+            yAxis: {
+              min: 0,
+              title: {
+                text: "Matches"
+              }
+            },
+            tooltip: {
+              headerFormat:
+                '<span style="font-size:10px">{point.key}</span><table>',
+              pointFormat:
+                '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+              footerFormat: "</table>",
+              shared: true,
+              useHTML: true
+            },
+            plotOptions: {
+              column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+              }
+            },
+            series: array
+          });
+        }
+        xhttp.onerror = function() {
+          alert(`Network Error`);
+        };
+      };
+    </script>
+  </body>
+</html>
