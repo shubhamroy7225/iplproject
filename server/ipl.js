@@ -292,12 +292,7 @@ module.exports = class Matches {
         }
       }
     }
-    var a = [], array = []
-    a.push(posj)
-    a.push(max)
-    array.push(a)
-    return array
-    //return { 'batsman': posi, 'bowler': posj, 'num': max }
+    return { 'batsman': posi, 'bowler': posj, 'num': max }
   }
 
   //  9.Find the bowler with the best economy in super overs

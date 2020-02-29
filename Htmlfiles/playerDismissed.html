@@ -24,8 +24,13 @@ xhttp.open("GET", '/playerDismissedbyBowler', true);
 xhttp.send();
 xhttp.onreadystatechange = function() {
 if (this.readyState == 4 && this.status == 200) {
-var data1 = this.responseText;
-
+    var data1 = JSON.parse(this.responseText);
+    var a = [],array = []
+    for(let i in data1){
+        if(i != 'batsman')
+        a.push(data1[i])
+    }
+array.push(a)
 Highcharts.chart('container', {
     chart: {
         type: 'column'
@@ -60,13 +65,13 @@ Highcharts.chart('container', {
     },
     series: [{
         name: 'Values',
-        data: JSON.parse(xhttp.response),
+        data: array,
         dataLabels: {
             enabled: true,
             rotation: -90,
             color: 'red',
             align: 'right',
-            format: '{point.y:.1f}',
+            format: '{point.y:.0f}',
             y: 10,
             style: {
                 fontSize: '13px',
