@@ -255,7 +255,7 @@ var server = http
           res.end();
         }
       });
-    } else {
+    }else {
       res.writeHead(200, { "Content-Type": "text" });
       res.write("route does not exist");
       res.end();

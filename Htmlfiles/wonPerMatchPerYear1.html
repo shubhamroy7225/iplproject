@@ -15,9 +15,12 @@
     </figure>
     <script>
       var xhttp = new XMLHttpRequest();
-      xhttp.open("GET", "/wonPerMatchPerteamYear", true);
+      xhttp.open("GET", "/wonPerMatchPerteamYear1", true);
       xhttp.send();
       xhttp.onreadystatechange = function() {
+        console.log("the readyState", this.readyState)
+      }
+      xhttp.onload = function(){
         if (this.readyState == 4 && this.status == 200) {
           var data1 = JSON.parse(this.responseText);
           // here i have to make a login to formated data
@@ -95,9 +98,6 @@
             series: array
           });
         }
-        xhttp.onerror = function() {
-          alert(`Network Error`);
-        };
       };
     </script>
   </body>

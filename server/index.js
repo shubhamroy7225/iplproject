@@ -4,6 +4,7 @@ const csv=require('csvtojson')
 const Matches = require('./ipl.js')
 const csvFilePath='../data/matches.csv'
 const csvFilePath2='../data/deliveries.csv'
+const { Client } = require('pg')
 
 csv()
 .fromFile(csvFilePath)
