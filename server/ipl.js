@@ -57,7 +57,7 @@ module.exports = class Matches {
   takeId() {
     var arr1 = []
     for (let i in this.matchesData) {
-      if (this.matchesData[i].season === '2016') {
+      if (this.matchesData[i].season == '2016') {
         arr1.push(this.matchesData[i].id)
       }
     }
